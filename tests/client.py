@@ -23,6 +23,15 @@ Tests to write...
 test_image = Path.cwd() / "tests" / "good_dog.png"
 
 
+def print_response(response: dict[str, str]):
+    print("{")
+    for key, value in response.items():
+        if len(value) > 50:
+            value = value[0:50] + " (truncated)"
+        print(f"    {key}: {value}")
+    print("}")
+
+
 def main() -> None:
     # maybe use argparser or something for host, port, etc
 
@@ -45,7 +54,7 @@ def main() -> None:
 
     response: Any = socket.recv_json()
 
-    # print("recieved response: ", response)
+    print_response(response)
 
     if response["status"] == "ok":
         img = response["image"]
@@ -58,8 +67,6 @@ def main() -> None:
         b = io.BytesIO(img_bytes)
         i: Image = im.open(b)
         i.show()
-    elif response["status"] == "error":
-        print(response)
 
 
 if __name__ == "__main__":
