@@ -9,5 +9,5 @@ class Config(BaseSettings):
     )
 
     host: str = "*"
-    port: str = "8672"
+    port: str = "8674"
     loglevel: str = "info"
