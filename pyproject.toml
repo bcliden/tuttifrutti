@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tuttifrutti"
+version = "0.0.1-beta"
+authors = [{ name = "Benjamin Liden", email = "lidenb@oregonstate.edu" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">3.10"
+dependencies = [
+    "pillow",
+    "pillow_lut >= 1",
+    "pydantic >= 2",
+    "pydantic-settings >= 2",
+    "zmq",
+]
+
+[project.urls]
+Homepage = "https://github.com/bcliden/tuttifrutti"
+Issues = "https://github.com/bcliden/tuttifrutti/issues"
+
+[tool.setuptools.package-data]
+"tuttifrutti.lut" = ["*.cube"]
+
+[project.scripts]
+"tuttifrutti.zmq" = "tuttifrutti.zero_mq.entry:main"
+# "tuttifrutti.cli" = "tuttifrutti.cli.entry:main"
+
+[project.gui-scripts]
+# do we have any of these?
+
+[[tool.mypy.overrides]]
+module = "pillow_lut"
+ignore_missing_imports = true
